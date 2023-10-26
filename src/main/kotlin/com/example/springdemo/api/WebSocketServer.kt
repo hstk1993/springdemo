@@ -12,8 +12,14 @@ import java.util.concurrent.CopyOnWriteArraySet
 @Component
 @ServerEndpoint("/websocket/{userId}")
 class WebSocketServer {
-    val SESSIONS = CopyOnWriteArraySet<Session>()
-    val SESSION_POOL = HashMap<String, Session>()
+    companion object {
+        @JvmStatic
+        val SESSIONS = CopyOnWriteArraySet<Session>()
+
+        @JvmStatic
+        val SESSION_POOL = HashMap<String, Session>()
+    }
+
 
     @OnOpen
     fun onOpen(session: Session, @PathParam(value = "userId") userId: String) {
